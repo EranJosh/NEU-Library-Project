@@ -201,8 +201,8 @@ One document per check-in event.
 
 **1. Clone the repo**
 ```bash
-git clone https://github.com/EranJosh/NEU-Library-Project.git
-cd NEU-Library-Project
+git clone https://github.com/EranJosh/NEU-Library-System.git
+cd NEU-Library-System
 ```
 
 **2. Install dependencies**
