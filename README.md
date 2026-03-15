@@ -1,243 +1,303 @@
+<div align="center">
+
+<img src="public/neu-logo.png" alt="NEU Logo" width="90" />
+
 # NEU Library Visitor Log System
 
-![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=flat&logo=vite&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-12-FFCA28?style=flat&logo=firebase&logoColor=black)
-![Deployed](https://img.shields.io/badge/Deployed-Firebase%20Hosting-FF6F00?style=flat&logo=firebase&logoColor=white)
-![License](https://img.shields.io/badge/License-Academic-blue?style=flat)
+**A digital check-in system built for the New Era University Library**
 
-A web-based visitor logging and management system for the **New Era University (NEU) Library**. The application allows library visitors to check in digitally using their Google account, and provides administrators with a real-time analytics dashboard to monitor library usage and manage user accounts.
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
+[![Firebase](https://img.shields.io/badge/Firebase-12-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com)
+[![Firestore](https://img.shields.io/badge/Firestore-NoSQL-FF6F00?style=for-the-badge&logo=firebase&logoColor=white)](https://firebase.google.com/docs/firestore)
+[![Hosted on Firebase](https://img.shields.io/badge/Hosted%20on-Firebase-FF6F00?style=for-the-badge&logo=firebase&logoColor=white)](https://libraryproj-softeng.web.app)
 
----
+### 🌐 [View Live Demo → libraryproj-softeng.web.app](https://libraryproj-softeng.web.app)
 
-## Live Demo
-
-**[https://libraryproj-softeng.web.app](https://libraryproj-softeng.web.app)**
+</div>
 
 ---
 
-## Tech Stack
+## 📖 About the Project
 
-| Layer | Technology |
-|---|---|
-| Frontend Framework | React 19 + Vite 7 |
-| Routing | React Router DOM v7 |
-| Authentication | Firebase Authentication (Google OAuth) |
-| Database | Cloud Firestore |
-| Hosting | Firebase Hosting |
-| Styling | Plain CSS (component-scoped) |
+This started as a sprint-based Software Engineering class project, but I genuinely tried to make it something usable. The NEU Library still uses a paper logbook for visitor sign-ins — this app replaces that with a clean digital alternative where visitors sign in with their NEU Google account, pick their reason for visiting, and get logged in real time to Firestore.
+
+There's also a full admin side: a dashboard that shows visitor stats broken down by college and visit reason, with time filters, and the ability to search any registered user and view their full visit history — or block them if needed.
 
 ---
 
-## Features
+## 🛠️ Tech Stack
 
-### Sprint 1 — Authentication & Onboarding
-- Google Sign-In via Firebase Authentication (OAuth 2.0)
-- First-time visitor onboarding: select user type (Student, Faculty, Employee) and college/office department
-- Persistent auth state — users stay logged in across sessions
-- Route protection via `PrivateRoute` component
+| Layer | Technology | Why I used it |
+|---|---|---|
+| Framework | React 19 + Vite 7 | Fast dev server, component-based UI |
+| Routing | React Router DOM v7 | Clean SPA navigation with protected routes |
+| Auth | Firebase Authentication | Google OAuth with zero backend needed |
+| Database | Cloud Firestore | Real-time NoSQL, scales with the app |
+| Hosting | Firebase Hosting | Free, fast, and deploys in one command |
+| Styling | Plain CSS (component-scoped) | Kept it simple, no CSS framework overhead |
 
-### Sprint 2 — Check-In System
-- One-click library check-in with purpose-of-visit selection
-- Six visit reasons: Reading, Research, Use of Computer, Studying, Borrowing/Returning Books, Other
-- Each check-in is timestamped and written to Firestore in real time
-- Post check-in confirmation/welcome screen
+---
 
-### Sprint 3 — User Dashboard
-- Personal stats: visits this month, total visits, current day-streak, top visit reason
-- Full personal visit history with color-coded timeline
-- Borrowed books tracker with due dates and overdue status indicators
-- In-app library catalog with borrow/return functionality
+## ✨ Features
+
+### 🔐 Auth & Onboarding
+- Google Sign-In — only `@neu.edu.ph` accounts allowed
+- First-time visitors complete a quick profile: user type (Student / Faculty / Employee) and their college or office
+- Auth state is persistent — no need to sign in again on every visit
+- All protected routes redirect unauthenticated users back to login
+
+### 📋 Check-In System
+- Pick your reason for visiting from 6 options: Reading, Research, Use of Computer, Studying, Borrowing/Returning Books, or Other
+- Check-in is written to Firestore instantly with a server-side timestamp
+- Confirmation screen plays after every successful check-in
+
+### 📊 Personal Dashboard
+- Stats at a glance: visits this month, total visits, current visit streak, top reason
+- Full visit history displayed as a color-coded timeline
+- Borrowed books tracker — see due dates, overdue warnings, and return status
+- In-app library catalog to borrow books (14-day loan period)
 - Library announcements and tips sidebar
 
-### Sprint 4 — Admin Dashboard
-- Time-filtered visitor analytics: Today, Weekly, Monthly, Custom date range
-- Visitor count with breakdown by College/Office (top 7 shown)
-- Visit reason breakdown with relative bar chart
-- User search by name or email
-- Per-user profile view: type, department, total visits, status
-- Block/Unblock user accounts in one click
-- Full per-user visit history table
+### 🛡️ Admin Dashboard
+- Live visitor analytics filtered by Today / Weekly / Monthly / Custom date range
+- Breakdown of visitors by college/office and visit reason (with bar chart)
+- Search any user by name or email and view their full profile + visit history
+- One-click Block / Unblock — blocked users see an Access Denied screen on check-in
 
 ---
 
-## How to Run Locally
+## 📸 Screenshots
+
+### Auth & Onboarding
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/login-page.png" alt="Login Page" />
+      <br /><sub><b>Login Page</b> — Google Sign-In with NEU branding</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/onboarding-page.png" alt="Onboarding Page" />
+      <br /><sub><b>Onboarding</b> — First-time profile setup (user type + college)</sub>
+    </td>
+  </tr>
+</table>
+
+### Check-In Flow
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/checkin-page.png" alt="Check-In Page" />
+      <br /><sub><b>Check-In</b> — Select your purpose of visit</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/welcome-screen.png" alt="Welcome Screen" />
+      <br /><sub><b>Welcome Screen</b> — Confirmation after a successful check-in</sub>
+    </td>
+  </tr>
+</table>
+
+### User Dashboard
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/user-dashboard.png" alt="User Dashboard" />
+      <br /><sub><b>Dashboard</b> — Personal stats, visit history, and borrowed books</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/user-dashboard-books.png" alt="Borrowed Books" />
+      <br /><sub><b>Borrowed Books</b> — Due dates, overdue status, and return tracking</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/user-dashboard-catalog.png" alt="Book Catalog" />
+      <br /><sub><b>Library Catalog</b> — Browse and borrow books from the in-app catalog</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/user-dashboard-tips.png" alt="Announcements and Tips" />
+      <br /><sub><b>Sidebar</b> — Library announcements and good-habit tips</sub>
+    </td>
+  </tr>
+</table>
+
+### Admin Dashboard
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/admin-dashboard.png" alt="Admin Dashboard" />
+      <br /><sub><b>Analytics</b> — Visitor stats with time filter (Today / Weekly / Monthly)</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/admin-user-search.png" alt="Admin User Search" />
+      <br /><sub><b>User Search</b> — Find any registered user by name or email</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/admin-user-profile.png" alt="Admin User Profile" />
+      <br /><sub><b>User Profile</b> — View full visit history and block/unblock controls</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/admin-user-blocked.png" alt="Admin User Blocked" />
+      <br /><sub><b>Blocked User</b> — Blocked status shown with unblock option</sub>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 🗄️ Firestore Data Model
+
+### `users` collection
+One document per registered user — document ID is the Firebase Auth UID.
+
+| Field | Type | Description |
+|---|---|---|
+| `email` | `string` | Google account email |
+| `fullName` | `string` | Display name from Google |
+| `userType` | `string` | `"student"`, `"faculty"`, or `"employee"` |
+| `college_office` | `string` | Selected department |
+| `role` | `string` | `"admin"` for admins, absent for regular users |
+| `isBlocked` | `boolean` | `true` if account is restricted by admin |
+| `isSetupComplete` | `boolean` | `true` once onboarding is done |
+| `createdAt` | `Timestamp` | Account creation time |
+| `borrowedBooks` | `Array` | Borrow records (see below) |
+
+**`borrowedBooks` item:**
+
+| Field | Type | Description |
+|---|---|---|
+| `id` | `string` | Catalog book ID (e.g. `"book-3"`) |
+| `status` | `string` | `"borrowed"`, `"overdue"`, or `"returned"` |
+| `dateBorrowed` | `Timestamp` | Borrow date |
+| `dueDate` | `Timestamp` | 14 days from borrow date |
+| `returnedAt` | `Timestamp \| null` | Return date, or `null` if still out |
+
+### `logs` collection
+One document per check-in event.
+
+| Field | Type | Description |
+|---|---|---|
+| `uid` | `string` | Firebase Auth UID |
+| `userEmail` | `string` | Visitor's email |
+| `college_office` | `string` | Department at time of check-in |
+| `reason` | `string` | Purpose of visit |
+| `timestamp` | `Timestamp` | Server-side check-in time |
+
+---
+
+## 🚀 Running Locally
 
 ### Prerequisites
-
-- [Node.js](https://nodejs.org/) v18 or higher
-- A Firebase project with Authentication (Google provider) and Firestore enabled
+- Node.js v18+
+- A Firebase project with Google Auth and Firestore enabled
 
 ### Steps
 
-1. **Clone the repository**
+**1. Clone the repo**
+```bash
+git clone https://github.com/EranJosh/NEU-Library-Project.git
+cd NEU-Library-Project
+```
 
-   ```bash
-   git clone https://github.com/EranJosh/NEU-Library-Project.git
-   cd NEU-Library-Project
-   ```
+**2. Install dependencies**
+```bash
+npm install
+```
 
-2. **Install dependencies**
+**3. Set up environment variables**
 
-   ```bash
-   npm install
-   ```
+Copy the example file and fill in your Firebase credentials:
+```bash
+cp .env.example .env
+```
 
-3. **Configure environment variables**
+Your `.env` should look like this (get the values from Firebase Console → Project Settings → Your Apps):
+```env
+VITE_FIREBASE_API_KEY=your_api_key_here
+VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project_id.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+```
 
-   Copy the example file and fill in your Firebase project credentials:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-   Open `.env` and replace the placeholder values with your actual Firebase config (found in Firebase Console → Project Settings → Your Apps):
-
-   ```env
-   VITE_FIREBASE_API_KEY=your_api_key_here
-   VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
-   VITE_FIREBASE_PROJECT_ID=your_project_id
-   VITE_FIREBASE_STORAGE_BUCKET=your_project_id.firebasestorage.app
-   VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
-   VITE_FIREBASE_APP_ID=your_app_id
-   ```
-
-4. **Start the development server**
-
-   ```bash
-   npm run dev
-   ```
-
-   The app will be available at `http://localhost:5173`.
+**4. Start the dev server**
+```bash
+npm run dev
+```
+Open `http://localhost:5173` in your browser.
 
 ---
 
-## How to Deploy
+## 📦 Deploying
 
-This project is deployed to Firebase Hosting.
+This project uses Firebase Hosting. After making changes:
 
-1. **Install the Firebase CLI** (if not already installed)
+```bash
+# Build the production bundle
+npm run build
 
-   ```bash
-   npm install -g firebase-tools
-   ```
+# Deploy to Firebase
+firebase deploy --only hosting
+```
 
-2. **Log in to Firebase**
-
-   ```bash
-   firebase login
-   ```
-
-3. **Build the production bundle**
-
-   ```bash
-   npm run build
-   ```
-
-4. **Deploy to Firebase Hosting**
-
-   ```bash
-   firebase deploy --only hosting
-   ```
-
-> **Note:** Environment variables prefixed with `VITE_` are embedded into the build bundle at build time. Make sure your `.env` file is present and correct before running `npm run build`.
+> The `.env` file needs to be present before building — Vite embeds the `VITE_` variables into the bundle at build time.
 
 ---
 
-## Firestore Data Model
-
-### Collection: `users`
-
-Stores one document per registered user. The document ID is the Firebase Auth UID.
-
-| Field | Type | Description |
-|---|---|---|
-| `email` | `string` | User's Google account email |
-| `fullName` | `string` | Display name from Google account |
-| `userType` | `string` | `"student"`, `"faculty"`, or `"employee"` |
-| `college_office` | `string` | Selected college or office department |
-| `role` | `string` | `"admin"` for administrators, absent for regular users |
-| `isBlocked` | `boolean` | `true` if the admin has restricted this account |
-| `isSetupComplete` | `boolean` | `true` after the onboarding form is submitted |
-| `createdAt` | `Timestamp` | Account creation timestamp |
-| `borrowedBooks` | `Array` | Array of book borrow records (see below) |
-
-**`borrowedBooks` array item structure:**
-
-| Field | Type | Description |
-|---|---|---|
-| `id` | `string` | Catalog book ID (e.g., `"book-1"`) |
-| `status` | `string` | `"borrowed"`, `"overdue"`, or `"returned"` |
-| `dateBorrowed` | `Timestamp` | When the book was borrowed |
-| `dueDate` | `Timestamp` | Return deadline (14 days from borrow date) |
-| `returnedAt` | `Timestamp \| null` | When the book was returned, or `null` if still out |
-
-### Collection: `logs`
-
-Stores one document per library check-in event.
-
-| Field | Type | Description |
-|---|---|---|
-| `uid` | `string` | Firebase Auth UID of the visitor |
-| `userEmail` | `string` | Email of the visitor |
-| `college_office` | `string` | Visitor's department at time of check-in |
-| `reason` | `string` | Selected purpose of visit |
-| `timestamp` | `Timestamp` | Server-side timestamp of the check-in |
-
----
-
-## Screenshots
-
-> _Screenshots to be added._
-
-| Page | Description |
-|---|---|
-| Login | Google Sign-In landing page |
-| Onboarding | First-time profile setup form |
-| Check-In | Purpose-of-visit selection screen |
-| Welcome | Post check-in confirmation screen |
-| User Dashboard | Personal stats, visit history, and borrowed books |
-| Admin Dashboard | Visitor analytics and user management |
-
----
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 neu-library-log/
-├── public/                   # Static assets (logos, favicon)
+├── public/                   # Static assets (NEU logos, favicon)
 ├── src/
 │   ├── components/
-│   │   └── PrivateRoute.jsx  # Route guard for auth and admin access
+│   │   └── PrivateRoute.jsx  # Auth + admin route guard
 │   ├── context/
-│   │   └── AuthContext.jsx   # Global auth state (Firebase onAuthStateChanged)
+│   │   └── AuthContext.jsx   # Global auth state via React Context
 │   ├── firebase/
-│   │   └── firebaseConfig.js # Firebase app initialization (reads from .env)
+│   │   └── firebaseConfig.js # Firebase init (reads from .env)
 │   ├── pages/
-│   │   ├── LoginPage.jsx     # Google Sign-In
+│   │   ├── LoginPage.jsx
 │   │   ├── OnboardingPage.jsx
 │   │   ├── CheckInPage.jsx
 │   │   ├── WelcomePage.jsx
 │   │   ├── DashboardPage.jsx
 │   │   └── AdminDashboard.jsx
-│   ├── App.jsx               # Root router and route definitions
-│   └── main.jsx              # React entry point
-├── .env                      # Local environment variables (gitignored)
-├── .env.example              # Environment variable template
-├── firebase.json             # Firebase Hosting configuration
-└── vite.config.js            # Vite build configuration
+│   ├── App.jsx               # Route definitions
+│   └── main.jsx              # Entry point
+├── docs/
+│   ├── screenshots/          # App screenshots
+│   └── TECHNICAL_DOCUMENTATION.md
+├── .env                      # Local secrets (gitignored)
+├── .env.example              # Template for contributors
+├── firebase.json             # Hosting config
+└── vite.config.js
 ```
 
 ---
 
-## Documentation
+## 📚 Documentation
 
-For a deeper technical reference, see [docs/TECHNICAL_DOCUMENTATION.md](docs/TECHNICAL_DOCUMENTATION.md).
+For a deeper dive into the system architecture, all user flows, Firestore security rules, and known limitations, check out the [Technical Documentation](docs/TECHNICAL_DOCUMENTATION.md).
 
 ---
 
-## Author
+## 👤 Author
 
-**Eran Josh C. Reyes**
-New Era University — College of Informatics and Computing Studies
-Software Engineering Project — Academic Year 2025–2026
+<table>
+  <tr>
+    <td>
+      <strong>Eran Josh C. Reyes</strong><br />
+      New Era University<br />
+      College of Informatics and Computing Studies<br />
+      Software Engineering — Academic Year 2025–2026
+    </td>
+  </tr>
+</table>
