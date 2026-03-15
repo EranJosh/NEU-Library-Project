@@ -1,0 +1,237 @@
+/* ══════════════════════════════════════════
+   Welcome / Success Page — Full-screen
+══════════════════════════════════════════ */
+
+.welcome-bg {
+  min-height: 100vh;
+  background: #f8faff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft background orbs */
+.welcome-bg::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.07) 0%, transparent 70%);
+  top: -130px;
+  right: -100px;
+  pointer-events: none;
+}
+
+.welcome-bg::after {
+  content: '';
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.06) 0%, transparent 70%);
+  bottom: -80px;
+  left: -80px;
+  pointer-events: none;
+}
+
+/* ── Brand bar (fixed top) ── */
+.welcome-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 62px;
+  background: #0a1628;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 2rem;
+  z-index: 10;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.welcome-topbar-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(245, 158, 11, 0.45);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+}
+
+.welcome-topbar-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.welcome-topbar-label-top {
+  font-size: 0.54rem;
+  color: rgba(245, 158, 11, 0.85);
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.welcome-topbar-label-bot {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* ── Main centered area ── */
+.welcome-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem 2rem;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* ── Success Card ── */
+.welcome-card {
+  background: #fff;
+  border-radius: 28px;
+  padding: 3.5rem 2.75rem;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow:
+    0 20px 56px rgba(10, 22, 40, 0.12),
+    0 0 0 1px rgba(30, 58, 138, 0.05);
+  animation: fadeInUp 0.5s ease-out both;
+  position: relative;
+}
+
+/* ── Animated check circle with two ripple rings ── */
+.welcome-check-circle {
+  width: 96px;
+  height: 96px;
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.75rem;
+  position: relative;
+}
+
+.welcome-check-circle::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(34, 197, 94, 0.35);
+  animation: pulseRing 1.8s ease-out infinite;
+}
+
+.welcome-check-circle::after {
+  content: '';
+  position: absolute;
+  inset: -24px;
+  border-radius: 50%;
+  border: 2px solid rgba(34, 197, 94, 0.18);
+  animation: pulseRing 1.8s ease-out infinite;
+  animation-delay: 0.5s;
+}
+
+.check-circle-bg {
+  stroke: #16a34a;
+  stroke-width: 1.5;
+}
+
+.check-tick {
+  stroke: #16a34a;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: draw-tick 0.5s ease-out 0.25s forwards;
+}
+
+/* ── Typography ── */
+.welcome-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #0a1628;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.03em;
+}
+
+.welcome-sub {
+  font-size: 0.92rem;
+  color: #64748b;
+  margin: 0 0 2.25rem;
+  line-height: 1.8;
+}
+
+/* ── Progress bar ── */
+.welcome-progress-track {
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 0.65rem;
+}
+
+.welcome-progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #1e3a8a, #3b82f6, #f59e0b);
+  background-size: 200% 100%;
+  animation: shimmerMove 2s linear infinite;
+  border-radius: 99px;
+  transition: width 0.05s linear;
+}
+
+.welcome-redirect-text {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0 0 2rem;
+  font-weight: 500;
+}
+
+/* ── Manual return button ── */
+.welcome-manual-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.6rem;
+  background: none;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 99px;
+  color: #1e3a8a;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.welcome-manual-btn:hover {
+  background: #eff6ff;
+  border-color: #1e3a8a;
+  transform: translateY(-1px);
+}
+
+/* ── Confetti ── */
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.confetti-piece {
+  position: absolute;
+  border-radius: 2px;
+  animation: confettiFall linear forwards;
+  top: -12px;
+}
