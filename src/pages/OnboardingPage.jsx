@@ -54,8 +54,9 @@ export default function OnboardingPage() {
         college_office: selectedCollege,
         isSetupComplete: true,
       });
-      await refreshProfile();
-      navigate("/checkin");
+      const updatedProfile = await refreshProfile();
+      const role = updatedProfile?.role;
+      navigate(role === "admin" ? "/admin" : "/checkin");
     } catch (err) {
       console.error(err);
       setError("Failed to save profile. Please try again.");

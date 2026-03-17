@@ -31,9 +31,11 @@ export function AuthProvider({ children }) {
 
   // Call this after onboarding completes so the profile is fresh in context
   const refreshProfile = async () => {
-    if (!currentUser) return;
+    if (!currentUser) return null;
     const snap = await getDoc(doc(db, "users", currentUser.uid));
-    setUserProfile(snap.exists() ? snap.data() : null);
+    const data = snap.exists() ? snap.data() : null;
+    setUserProfile(data);
+    return data;
   };
 
   return (

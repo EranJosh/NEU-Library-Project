@@ -6,6 +6,7 @@ import { auth, db, googleProvider } from "../firebase/firebaseConfig";
 import "./LoginPage.css";
 
 const NEU_DOMAIN = "@neu.edu.ph";
+const PRE_REGISTERED_ADMINS = ["jcesperanza@neu.edu.ph"];
 
 export default function LoginPage() {
   const [error, setError] = useState("");
@@ -30,11 +31,12 @@ export default function LoginPage() {
       const snap = await getDoc(userRef);
 
       if (!snap.exists()) {
+        const isPreRegisteredAdmin = PRE_REGISTERED_ADMINS.includes(user.email.toLowerCase());
         await setDoc(userRef, {
           uid: user.uid,
           email: user.email,
           fullName: user.displayName || "",
-          role: "user",
+          role: isPreRegisteredAdmin ? "admin" : "user",
           college_office: "",
           userType: "",
           isSetupComplete: false,
